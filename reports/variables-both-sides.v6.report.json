@@ -1,0 +1,448 @@
+{
+  "nodeId": "solve-equations-with-variables-on-both-sides",
+  "arithmetic": "exact-rational-v1",
+  "status": "pass",
+  "issues": [],
+  "cases": [
+    {
+      "generator": "integer-unique-solution",
+      "parameters": {
+        "a": 3,
+        "b": -5,
+        "c": 11,
+        "d": -29
+      },
+      "attempts": 3,
+      "answer": {
+        "kind": "one",
+        "value": {
+          "numerator": "3",
+          "denominator": "1",
+          "text": "3"
+        }
+      },
+      "passed": true
+    },
+    {
+      "generator": "integer-unique-solution",
+      "parameters": {
+        "a": 5,
+        "b": 13,
+        "c": -8,
+        "d": 0
+      },
+      "attempts": 10,
+      "answer": {
+        "kind": "one",
+        "value": {
+          "numerator": "-1",
+          "denominator": "1",
+          "text": "-1"
+        }
+      },
+      "passed": true
+    },
+    {
+      "generator": "integer-unique-solution",
+      "parameters": {
+        "a": 2,
+        "b": 5,
+        "c": 5,
+        "d": -31
+      },
+      "attempts": 9,
+      "answer": {
+        "kind": "one",
+        "value": {
+          "numerator": "12",
+          "denominator": "1",
+          "text": "12"
+        }
+      },
+      "passed": true
+    },
+    {
+      "generator": "integer-unique-solution",
+      "parameters": {
+        "a": 6,
+        "b": -5,
+        "c": 9,
+        "d": -38
+      },
+      "attempts": 13,
+      "answer": {
+        "kind": "one",
+        "value": {
+          "numerator": "11",
+          "denominator": "1",
+          "text": "11"
+        }
+      },
+      "passed": true
+    },
+    {
+      "generator": "integer-unique-solution",
+      "parameters": {
+        "a": 10,
+        "b": 15,
+        "c": -5,
+        "d": -45
+      },
+      "attempts": 19,
+      "answer": {
+        "kind": "one",
+        "value": {
+          "numerator": "-4",
+          "denominator": "1",
+          "text": "-4"
+        }
+      },
+      "passed": true
+    },
+    {
+      "generator": "integer-unique-solution",
+      "parameters": {
+        "a": -9,
+        "b": -14,
+        "c": 6,
+        "d": 61
+      },
+      "attempts": 5,
+      "answer": {
+        "kind": "one",
+        "value": {
+          "numerator": "-5",
+          "denominator": "1",
+          "text": "-5"
+        }
+      },
+      "passed": true
+    },
+    {
+      "generator": "integer-unique-solution",
+      "parameters": {
+        "a": 7,
+        "b": 6,
+        "c": 4,
+        "d": -12
+      },
+      "attempts": 11,
+      "answer": {
+        "kind": "one",
+        "value": {
+          "numerator": "-6",
+          "denominator": "1",
+          "text": "-6"
+        }
+      },
+      "passed": true
+    },
+    {
+      "generator": "integer-unique-solution",
+      "parameters": {
+        "a": -10,
+        "b": 18,
+        "c": 4,
+        "d": -24
+      },
+      "attempts": 1,
+      "answer": {
+        "kind": "one",
+        "value": {
+          "numerator": "3",
+          "denominator": "1",
+          "text": "3"
+        }
+      },
+      "passed": true
+    },
+    {
+      "generator": "integer-unique-solution",
+      "parameters": {
+        "a": 8,
+        "b": 16,
+        "c": 12,
+        "d": 52
+      },
+      "attempts": 17,
+      "answer": {
+        "kind": "one",
+        "value": {
+          "numerator": "-9",
+          "denominator": "1",
+          "text": "-9"
+        }
+      },
+      "passed": true
+    },
+    {
+      "generator": "integer-unique-solution",
+      "parameters": {
+        "a": 10,
+        "b": 14,
+        "c": 8,
+        "d": 20
+      },
+      "attempts": 1,
+      "answer": {
+        "kind": "one",
+        "value": {
+          "numerator": "3",
+          "denominator": "1",
+          "text": "3"
+        }
+      },
+      "passed": true
+    },
+    {
+      "generator": "identity-equation",
+      "parameters": {
+        "a": 8,
+        "b": 13
+      },
+      "attempts": 1,
+      "answer": {
+        "kind": "infinite"
+      },
+      "passed": true
+    },
+    {
+      "generator": "identity-equation",
+      "parameters": {
+        "a": -3,
+        "b": 16
+      },
+      "attempts": 1,
+      "answer": {
+        "kind": "infinite"
+      },
+      "passed": true
+    },
+    {
+      "generator": "identity-equation",
+      "parameters": {
+        "a": 3,
+        "b": -19
+      },
+      "attempts": 1,
+      "answer": {
+        "kind": "infinite"
+      },
+      "passed": true
+    },
+    {
+      "generator": "identity-equation",
+      "parameters": {
+        "a": -4,
+        "b": -8
+      },
+      "attempts": 1,
+      "answer": {
+        "kind": "infinite"
+      },
+      "passed": true
+    },
+    {
+      "generator": "identity-equation",
+      "parameters": {
+        "a": 3,
+        "b": -10
+      },
+      "attempts": 1,
+      "answer": {
+        "kind": "infinite"
+      },
+      "passed": true
+    },
+    {
+      "generator": "identity-equation",
+      "parameters": {
+        "a": 9,
+        "b": 12
+      },
+      "attempts": 1,
+      "answer": {
+        "kind": "infinite"
+      },
+      "passed": true
+    },
+    {
+      "generator": "identity-equation",
+      "parameters": {
+        "a": -12,
+        "b": 3
+      },
+      "attempts": 1,
+      "answer": {
+        "kind": "infinite"
+      },
+      "passed": true
+    },
+    {
+      "generator": "identity-equation",
+      "parameters": {
+        "a": -12,
+        "b": 0
+      },
+      "attempts": 1,
+      "answer": {
+        "kind": "infinite"
+      },
+      "passed": true
+    },
+    {
+      "generator": "identity-equation",
+      "parameters": {
+        "a": -1,
+        "b": 17
+      },
+      "attempts": 1,
+      "answer": {
+        "kind": "infinite"
+      },
+      "passed": true
+    },
+    {
+      "generator": "identity-equation",
+      "parameters": {
+        "a": -5,
+        "b": -18
+      },
+      "attempts": 1,
+      "answer": {
+        "kind": "infinite"
+      },
+      "passed": true
+    },
+    {
+      "generator": "contradiction-equation",
+      "parameters": {
+        "a": -5,
+        "b": -17,
+        "d": -3
+      },
+      "attempts": 1,
+      "answer": {
+        "kind": "none"
+      },
+      "passed": true
+    },
+    {
+      "generator": "contradiction-equation",
+      "parameters": {
+        "a": -9,
+        "b": 8,
+        "d": -17
+      },
+      "attempts": 2,
+      "answer": {
+        "kind": "none"
+      },
+      "passed": true
+    },
+    {
+      "generator": "contradiction-equation",
+      "parameters": {
+        "a": 4,
+        "b": -15,
+        "d": 19
+      },
+      "attempts": 1,
+      "answer": {
+        "kind": "none"
+      },
+      "passed": true
+    },
+    {
+      "generator": "contradiction-equation",
+      "parameters": {
+        "a": -12,
+        "b": 4,
+        "d": 20
+      },
+      "attempts": 1,
+      "answer": {
+        "kind": "none"
+      },
+      "passed": true
+    },
+    {
+      "generator": "contradiction-equation",
+      "parameters": {
+        "a": -4,
+        "b": -20,
+        "d": -11
+      },
+      "attempts": 1,
+      "answer": {
+        "kind": "none"
+      },
+      "passed": true
+    },
+    {
+      "generator": "contradiction-equation",
+      "parameters": {
+        "a": 9,
+        "b": -16,
+        "d": 20
+      },
+      "attempts": 1,
+      "answer": {
+        "kind": "none"
+      },
+      "passed": true
+    },
+    {
+      "generator": "contradiction-equation",
+      "parameters": {
+        "a": 3,
+        "b": -3,
+        "d": 19
+      },
+      "attempts": 1,
+      "answer": {
+        "kind": "none"
+      },
+      "passed": true
+    },
+    {
+      "generator": "contradiction-equation",
+      "parameters": {
+        "a": 7,
+        "b": -10,
+        "d": 7
+      },
+      "attempts": 1,
+      "answer": {
+        "kind": "none"
+      },
+      "passed": true
+    },
+    {
+      "generator": "contradiction-equation",
+      "parameters": {
+        "a": -9,
+        "b": 4,
+        "d": -6
+      },
+      "attempts": 1,
+      "answer": {
+        "kind": "none"
+      },
+      "passed": true
+    },
+    {
+      "generator": "contradiction-equation",
+      "parameters": {
+        "a": 6,
+        "b": 3,
+        "d": 20
+      },
+      "attempts": 1,
+      "answer": {
+        "kind": "none"
+      },
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "corpusSource": "node-generator-declarations",
+  "traceCount": 61,
+  "minimumRequired": 50,
+  "fiveStepTraceCount": 42,
+  "includesUnitCoefficients": true,
+  "includesSideSwaps": true,
+  "includesCollectRight": true,
+  "includesFractionalAnswers": true,
+  "includesExactDecimalRegression": true,
+  "nonlinearInputThrows": true,
+  "detectorPolicy": {
+    "role": "hint-selection-only",
+    "mayRejectStep": false,
+    "mayChangeGrade": false,
+    "gradingAuthority": "answer-verifier"
+  },
+  "falsePositives": [],
+  "status": "pass"
+}
