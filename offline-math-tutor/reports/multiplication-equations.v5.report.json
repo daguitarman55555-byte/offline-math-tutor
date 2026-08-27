@@ -1,0 +1,518 @@
+{
+  "nodeId": "solve-multiplication-equations",
+  "arithmetic": "exact-rational-v1",
+  "status": "pass",
+  "issues": [],
+  "cases": [
+    {
+      "generator": "positive-coefficient-fraction",
+      "parameters": {
+        "a": 10,
+        "b": -21
+      },
+      "attempts": 1,
+      "answer": {
+        "kind": "one",
+        "value": {
+          "numerator": "-21",
+          "denominator": "10",
+          "text": "-21/10"
+        }
+      },
+      "passed": true
+    },
+    {
+      "generator": "positive-coefficient-fraction",
+      "parameters": {
+        "a": 10,
+        "b": 7
+      },
+      "attempts": 1,
+      "answer": {
+        "kind": "one",
+        "value": {
+          "numerator": "7",
+          "denominator": "10",
+          "text": "7/10"
+        }
+      },
+      "passed": true
+    },
+    {
+      "generator": "positive-coefficient-fraction",
+      "parameters": {
+        "a": 2,
+        "b": 17
+      },
+      "attempts": 1,
+      "answer": {
+        "kind": "one",
+        "value": {
+          "numerator": "17",
+          "denominator": "2",
+          "text": "17/2"
+        }
+      },
+      "passed": true
+    },
+    {
+      "generator": "positive-coefficient-fraction",
+      "parameters": {
+        "a": 12,
+        "b": -6
+      },
+      "attempts": 1,
+      "answer": {
+        "kind": "one",
+        "value": {
+          "numerator": "-1",
+          "denominator": "2",
+          "text": "-1/2"
+        }
+      },
+      "passed": true
+    },
+    {
+      "generator": "positive-coefficient-fraction",
+      "parameters": {
+        "a": 12,
+        "b": -11
+      },
+      "attempts": 2,
+      "answer": {
+        "kind": "one",
+        "value": {
+          "numerator": "-11",
+          "denominator": "12",
+          "text": "-11/12"
+        }
+      },
+      "passed": true
+    },
+    {
+      "generator": "positive-coefficient-fraction",
+      "parameters": {
+        "a": 7,
+        "b": 27
+      },
+      "attempts": 1,
+      "answer": {
+        "kind": "one",
+        "value": {
+          "numerator": "27",
+          "denominator": "7",
+          "text": "27/7"
+        }
+      },
+      "passed": true
+    },
+    {
+      "generator": "positive-coefficient-fraction",
+      "parameters": {
+        "a": 7,
+        "b": 19
+      },
+      "attempts": 1,
+      "answer": {
+        "kind": "one",
+        "value": {
+          "numerator": "19",
+          "denominator": "7",
+          "text": "19/7"
+        }
+      },
+      "passed": true
+    },
+    {
+      "generator": "positive-coefficient-fraction",
+      "parameters": {
+        "a": 12,
+        "b": 15
+      },
+      "attempts": 1,
+      "answer": {
+        "kind": "one",
+        "value": {
+          "numerator": "5",
+          "denominator": "4",
+          "text": "5/4"
+        }
+      },
+      "passed": true
+    },
+    {
+      "generator": "positive-coefficient-fraction",
+      "parameters": {
+        "a": 10,
+        "b": -16
+      },
+      "attempts": 2,
+      "answer": {
+        "kind": "one",
+        "value": {
+          "numerator": "-8",
+          "denominator": "5",
+          "text": "-8/5"
+        }
+      },
+      "passed": true
+    },
+    {
+      "generator": "positive-coefficient-fraction",
+      "parameters": {
+        "a": 5,
+        "b": -24
+      },
+      "attempts": 1,
+      "answer": {
+        "kind": "one",
+        "value": {
+          "numerator": "-24",
+          "denominator": "5",
+          "text": "-24/5"
+        }
+      },
+      "passed": true
+    },
+    {
+      "generator": "positive-coefficient-fraction",
+      "parameters": {
+        "a": 12,
+        "b": -26
+      },
+      "attempts": 1,
+      "answer": {
+        "kind": "one",
+        "value": {
+          "numerator": "-13",
+          "denominator": "6",
+          "text": "-13/6"
+        }
+      },
+      "passed": true
+    },
+    {
+      "generator": "positive-coefficient-fraction",
+      "parameters": {
+        "a": 3,
+        "b": 26
+      },
+      "attempts": 2,
+      "answer": {
+        "kind": "one",
+        "value": {
+          "numerator": "26",
+          "denominator": "3",
+          "text": "26/3"
+        }
+      },
+      "passed": true
+    },
+    {
+      "generator": "positive-coefficient-fraction",
+      "parameters": {
+        "a": 4,
+        "b": 25
+      },
+      "attempts": 1,
+      "answer": {
+        "kind": "one",
+        "value": {
+          "numerator": "25",
+          "denominator": "4",
+          "text": "25/4"
+        }
+      },
+      "passed": true
+    },
+    {
+      "generator": "positive-coefficient-fraction",
+      "parameters": {
+        "a": 10,
+        "b": -2
+      },
+      "attempts": 1,
+      "answer": {
+        "kind": "one",
+        "value": {
+          "numerator": "-1",
+          "denominator": "5",
+          "text": "-1/5"
+        }
+      },
+      "passed": true
+    },
+    {
+      "generator": "positive-coefficient-fraction",
+      "parameters": {
+        "a": 6,
+        "b": -11
+      },
+      "attempts": 1,
+      "answer": {
+        "kind": "one",
+        "value": {
+          "numerator": "-11",
+          "denominator": "6",
+          "text": "-11/6"
+        }
+      },
+      "passed": true
+    },
+    {
+      "generator": "negative-coefficient-fraction",
+      "parameters": {
+        "a": -9,
+        "b": -10
+      },
+      "attempts": 1,
+      "answer": {
+        "kind": "one",
+        "value": {
+          "numerator": "10",
+          "denominator": "9",
+          "text": "10/9"
+        }
+      },
+      "passed": true
+    },
+    {
+      "generator": "negative-coefficient-fraction",
+      "parameters": {
+        "a": -6,
+        "b": 8
+      },
+      "attempts": 1,
+      "answer": {
+        "kind": "one",
+        "value": {
+          "numerator": "-4",
+          "denominator": "3",
+          "text": "-4/3"
+        }
+      },
+      "passed": true
+    },
+    {
+      "generator": "negative-coefficient-fraction",
+      "parameters": {
+        "a": -5,
+        "b": -17
+      },
+      "attempts": 1,
+      "answer": {
+        "kind": "one",
+        "value": {
+          "numerator": "17",
+          "denominator": "5",
+          "text": "17/5"
+        }
+      },
+      "passed": true
+    },
+    {
+      "generator": "negative-coefficient-fraction",
+      "parameters": {
+        "a": -9,
+        "b": 5
+      },
+      "attempts": 1,
+      "answer": {
+        "kind": "one",
+        "value": {
+          "numerator": "-5",
+          "denominator": "9",
+          "text": "-5/9"
+        }
+      },
+      "passed": true
+    },
+    {
+      "generator": "negative-coefficient-fraction",
+      "parameters": {
+        "a": -7,
+        "b": -11
+      },
+      "attempts": 1,
+      "answer": {
+        "kind": "one",
+        "value": {
+          "numerator": "11",
+          "denominator": "7",
+          "text": "11/7"
+        }
+      },
+      "passed": true
+    },
+    {
+      "generator": "negative-coefficient-fraction",
+      "parameters": {
+        "a": -5,
+        "b": 12
+      },
+      "attempts": 1,
+      "answer": {
+        "kind": "one",
+        "value": {
+          "numerator": "-12",
+          "denominator": "5",
+          "text": "-12/5"
+        }
+      },
+      "passed": true
+    },
+    {
+      "generator": "negative-coefficient-fraction",
+      "parameters": {
+        "a": -5,
+        "b": 19
+      },
+      "attempts": 1,
+      "answer": {
+        "kind": "one",
+        "value": {
+          "numerator": "-19",
+          "denominator": "5",
+          "text": "-19/5"
+        }
+      },
+      "passed": true
+    },
+    {
+      "generator": "negative-coefficient-fraction",
+      "parameters": {
+        "a": -7,
+        "b": 10
+      },
+      "attempts": 4,
+      "answer": {
+        "kind": "one",
+        "value": {
+          "numerator": "-10",
+          "denominator": "7",
+          "text": "-10/7"
+        }
+      },
+      "passed": true
+    },
+    {
+      "generator": "negative-coefficient-fraction",
+      "parameters": {
+        "a": -11,
+        "b": -21
+      },
+      "attempts": 1,
+      "answer": {
+        "kind": "one",
+        "value": {
+          "numerator": "21",
+          "denominator": "11",
+          "text": "21/11"
+        }
+      },
+      "passed": true
+    },
+    {
+      "generator": "negative-coefficient-fraction",
+      "parameters": {
+        "a": -3,
+        "b": 2
+      },
+      "attempts": 1,
+      "answer": {
+        "kind": "one",
+        "value": {
+          "numerator": "-2",
+          "denominator": "3",
+          "text": "-2/3"
+        }
+      },
+      "passed": true
+    },
+    {
+      "generator": "negative-coefficient-fraction",
+      "parameters": {
+        "a": -5,
+        "b": -19
+      },
+      "attempts": 3,
+      "answer": {
+        "kind": "one",
+        "value": {
+          "numerator": "19",
+          "denominator": "5",
+          "text": "19/5"
+        }
+      },
+      "passed": true
+    },
+    {
+      "generator": "negative-coefficient-fraction",
+      "parameters": {
+        "a": -5,
+        "b": 21
+      },
+      "attempts": 2,
+      "answer": {
+        "kind": "one",
+        "value": {
+          "numerator": "-21",
+          "denominator": "5",
+          "text": "-21/5"
+        }
+      },
+      "passed": true
+    },
+    {
+      "generator": "negative-coefficient-fraction",
+      "parameters": {
+        "a": -11,
+        "b": -8
+      },
+      "attempts": 2,
+      "answer": {
+        "kind": "one",
+        "value": {
+          "numerator": "8",
+          "denominator": "11",
+          "text": "8/11"
+        }
+      },
+      "passed": true
+    },
+    {
+      "generator": "negative-coefficient-fraction",
+      "parameters": {
+        "a": -12,
+        "b": -26
+      },
+      "attempts": 1,
+      "answer": {
+        "kind": "one",
+        "value": {
+          "numerator": "13",
+          "denominator": "6",
+          "text": "13/6"
+        }
+      },
+      "passed": true
+    },
+    {
+      "generator": "negative-coefficient-fraction",
+      "parameters": {
+        "a": -2,
+        "b": 15
+      },
+      "attempts": 1,
+      "answer": {
+        "kind": "one",
+        "value": {
+          "numerator": "-15",
+          "denominator": "2",
+          "text": "-15/2"
+        }
+      },
+      "passed": true
+    }
+  ]
+}

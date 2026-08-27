@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 4,
+  "id": "multiply-two-fractions",
+  "order": 93,
+  "title": "Multiply two fractions",
+  "objective": "Multiply two signed fractions and express the result as a reduced exact fraction.",
+  "prerequisites": [
+    "recall-single-digit-multiplication-facts",
+    "understand-numerator-and-denominator",
+    "interpret-a-fraction-as-division",
+    "multiply-a-fraction-by-a-whole-number"
+  ],
+  "lesson": [
+    {
+      "id": "multiply-numerators-and-denominators",
+      "kind": "explain",
+      "body": {
+        "text": "Multiply the numerators, multiply the denominators, and reduce the resulting fraction."
+      }
+    },
+    {
+      "id": "fraction-product-example",
+      "kind": "example",
+      "body": {
+        "prompt": "Multiply 2/3 by 5/8.",
+        "steps": [
+          {"math": "(2/3)(5/8) = 10/24", "reason": "Multiply numerators and denominators"},
+          {"math": "10/24 = 5/12", "reason": "Reduce by the greatest common factor"}
+        ],
+        "check": "The exact product is 5/12."
+      }
+    }
+  ],
+  "hints": [
+    {
+      "id": "multiply-top",
+      "body": "Multiply the two numerators."
+    },
+    {
+      "id": "multiply-bottom",
+      "body": "Multiply the two denominators."
+    },
+    {
+      "id": "reduce-result",
+      "body": "Divide the numerator and denominator by their greatest common factor."
+    }
+  ],
+  "generators": [
+    {
+      "id": "proper-fraction-product",
+      "learnerVariables": [],
+      "problem": {
+        "op": "multiply",
+        "args": [
+          {"op": "divide", "args": [{"var": "a"}, {"var": "b"}]},
+          {"op": "divide", "args": [{"var": "c"}, {"var": "d"}]}
+        ]
+      },
+      "parameters": {
+        "a": {"type": "integer", "min": 1, "max": 12},
+        "b": {"type": "integer", "min": 2, "max": 15},
+        "c": {"type": "integer", "min": 1, "max": 12},
+        "d": {"type": "integer", "min": 2, "max": 15}
+      },
+      "constraints": [
+        {"op": "less", "args": [{"var": "a"}, {"var": "b"}]},
+        {"op": "less", "args": [{"var": "c"}, {"var": "d"}]}
+      ],
+      "answer": {
+        "kind": "value",
+        "value": {
+          "op": "divide",
+          "args": [
+            {"op": "multiply", "args": [{"var": "a"}, {"var": "c"}]},
+            {"op": "multiply", "args": [{"var": "b"}, {"var": "d"}]}
+          ]
+        }
+      },
+      "supportedRules": ["multiply-fraction-numerators", "multiply-fraction-denominators", "reduce-fraction"]
+    },
+    {
+      "id": "signed-fraction-product",
+      "learnerVariables": [],
+      "problem": {
+        "op": "multiply",
+        "args": [
+          {"op": "divide", "args": [{"var": "a"}, {"var": "b"}]},
+          {"op": "divide", "args": [{"var": "c"}, {"var": "d"}]}
+        ]
+      },
+      "parameters": {
+        "a": {"type": "integer", "min": -12, "max": -1},
+        "b": {"type": "integer", "min": 2, "max": 15},
+        "c": {"type": "integer", "min": 1, "max": 12},
+        "d": {"type": "integer", "min": 2, "max": 15}
+      },
+      "constraints": [],
+      "answer": {
+        "kind": "value",
+        "value": {
+          "op": "divide",
+          "args": [
+            {"op": "multiply", "args": [{"var": "a"}, {"var": "c"}]},
+            {"op": "multiply", "args": [{"var": "b"}, {"var": "d"}]}
+          ]
+        }
+      },
+      "supportedRules": ["multiply-fraction-numerators", "multiply-fraction-denominators", "normalize-sign", "reduce-fraction"]
+    }
+  ],
+  "misconceptions": [
+    {
+      "id": "add-instead-of-multiply",
+      "detector": "fraction.add-instead-of-multiply",
+      "feedback": "A product of fractions requires multiplication, not addition."
+    },
+    {
+      "id": "cross-multiply",
+      "detector": "fraction.cross-multiply-product",
+      "feedback": "Cross multiplication is used for proportions. For a fraction product, multiply numerator by numerator and denominator by denominator."
+    },
+    {
+      "id": "leave-unreduced",
+      "detector": "fraction.leave-product-unreduced",
+      "feedback": "The value is correct but the final numerator and denominator still share a common factor."
+    }
+  ],
+  "mastery": {
+    "minAttempts": 8,
+    "requiredAccuracy": 0.85,
+    "maxHintRate": 0.25
+  },
+  "verification": {
+    "oracle": "value",
+    "generatedCaseCount": 30,
+    "domain": "rational"
+  }
+}

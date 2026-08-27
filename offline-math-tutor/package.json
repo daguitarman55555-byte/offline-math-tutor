@@ -1,0 +1,15 @@
+{
+  "name": "offline-math-tutor",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "verify": "node authoring/verify-node.mjs nodes/solve-equations-with-variables-on-both-sides.json && node authoring/verify-node.mjs nodes/solve-multiplication-equations.json && node authoring/verify-node.mjs nodes/multiply-two-fractions.json",
+    "test:math-mutations": "node authoring/mutation-suite.mjs nodes/solve-equations-with-variables-on-both-sides.json nodes/solve-multiplication-equations.json nodes/multiply-two-fractions.json",
+    "test:detectors": "node authoring/detector-mutation-suite.mjs",
+    "test": "npm run verify && npm run test:math-mutations && npm run test:detectors"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

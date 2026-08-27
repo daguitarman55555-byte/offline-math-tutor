@@ -1,0 +1,80 @@
+{
+  "attemptFormat": "ordered-expression-ast-steps-v1",
+  "detectorCount": 9,
+  "signalPropertyReads": 0,
+  "results": [
+    {
+      "detector": "linear.change-one-side-only",
+      "positiveFixtures": 3,
+      "negativeFixtures": 5,
+      "baselinePass": true,
+      "invertedMutationCaught": true,
+      "passed": true
+    },
+    {
+      "detector": "linear.move-term-without-inverse",
+      "positiveFixtures": 3,
+      "negativeFixtures": 5,
+      "baselinePass": true,
+      "invertedMutationCaught": true,
+      "passed": true
+    },
+    {
+      "detector": "linear.combine-unlike-terms",
+      "positiveFixtures": 3,
+      "negativeFixtures": 5,
+      "baselinePass": true,
+      "invertedMutationCaught": true,
+      "passed": true
+    },
+    {
+      "detector": "linear.multiply-instead-of-divide",
+      "positiveFixtures": 3,
+      "negativeFixtures": 5,
+      "baselinePass": true,
+      "invertedMutationCaught": true,
+      "passed": true
+    },
+    {
+      "detector": "linear.divide-in-wrong-order",
+      "positiveFixtures": 3,
+      "negativeFixtures": 5,
+      "baselinePass": true,
+      "invertedMutationCaught": true,
+      "passed": true
+    },
+    {
+      "detector": "linear.lose-negative-coefficient-sign",
+      "positiveFixtures": 3,
+      "negativeFixtures": 5,
+      "baselinePass": true,
+      "invertedMutationCaught": true,
+      "passed": true
+    },
+    {
+      "detector": "fraction.add-instead-of-multiply",
+      "positiveFixtures": 3,
+      "negativeFixtures": 5,
+      "baselinePass": true,
+      "invertedMutationCaught": true,
+      "passed": true
+    },
+    {
+      "detector": "fraction.cross-multiply-product",
+      "positiveFixtures": 3,
+      "negativeFixtures": 5,
+      "baselinePass": true,
+      "invertedMutationCaught": true,
+      "passed": true
+    },
+    {
+      "detector": "fraction.leave-product-unreduced",
+      "positiveFixtures": 3,
+      "negativeFixtures": 5,
+      "baselinePass": true,
+      "invertedMutationCaught": true,
+      "passed": true
+    }
+  ],
+  "status": "pass"
+}

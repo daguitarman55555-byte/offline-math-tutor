@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 4,
+  "id": "solve-multiplication-equations",
+  "order": 167,
+  "title": "Solve multiplication equations",
+  "objective": "Solve an equation of the form ax = b by dividing both sides by the nonzero coefficient, including cases with exact fractional solutions.",
+  "prerequisites": [
+    "divide-signed-numbers",
+    "understand-equality-as-balance",
+    "test-whether-a-value-solves-an-equation"
+  ],
+  "lesson": [
+    {
+      "id": "inverse-operation",
+      "kind": "explain",
+      "body": {
+        "text": "Division undoes multiplication. Divide both sides by the coefficient multiplying the variable."
+      }
+    },
+    {
+      "id": "fractional-solution-example",
+      "kind": "example",
+      "body": {
+        "prompt": "Solve 6x = 5.",
+        "steps": [
+          {"math": "6x = 5", "reason": "Original equation"},
+          {"math": "x = 5/6", "reason": "Divide both sides by 6"}
+        ],
+        "check": "6(5/6) = 5"
+      }
+    }
+  ],
+  "hints": [
+    {
+      "id": "identify-coefficient",
+      "body": "Identify the number multiplying the variable."
+    },
+    {
+      "id": "use-division",
+      "body": "Divide both sides by that nonzero coefficient."
+    },
+    {
+      "id": "keep-exact-fraction",
+      "body": "If the quotient is not an integer, keep it as a reduced exact fraction."
+    }
+  ],
+  "generators": [
+    {
+      "id": "positive-coefficient-fraction",
+      "learnerVariables": ["x"],
+      "problem": {
+        "op": "equal",
+        "args": [
+          {"op": "multiply", "args": [{"var": "a"}, {"var": "x"}]},
+          {"var": "b"}
+        ]
+      },
+      "parameters": {
+        "a": {"type": "integer", "min": 2, "max": 12},
+        "b": {"type": "integer", "min": -30, "max": 30}
+      },
+      "constraints": [
+        {"op": "not-equal", "args": [{"var": "b"}, {"literal": 0}]},
+        {"op": "not-equal", "args": [{"op": "mod", "args": [{"var": "b"}, {"var": "a"}]}, {"literal": 0}]}
+      ],
+      "answer": {
+        "kind": "one",
+        "value": {"op": "divide", "args": [{"var": "b"}, {"var": "a"}]}
+      },
+      "supportedRules": ["divide-both-sides-nonzero", "reduce-fraction"]
+    },
+    {
+      "id": "negative-coefficient-fraction",
+      "learnerVariables": ["x"],
+      "problem": {
+        "op": "equal",
+        "args": [
+          {"op": "multiply", "args": [{"var": "a"}, {"var": "x"}]},
+          {"var": "b"}
+        ]
+      },
+      "parameters": {
+        "a": {"type": "integer", "min": -12, "max": -2},
+        "b": {"type": "integer", "min": -30, "max": 30}
+      },
+      "constraints": [
+        {"op": "not-equal", "args": [{"var": "b"}, {"literal": 0}]},
+        {"op": "not-equal", "args": [{"op": "mod", "args": [{"var": "b"}, {"var": "a"}]}, {"literal": 0}]}
+      ],
+      "answer": {
+        "kind": "one",
+        "value": {"op": "divide", "args": [{"var": "b"}, {"var": "a"}]}
+      },
+      "supportedRules": ["divide-both-sides-nonzero", "reduce-fraction", "normalize-sign"]
+    }
+  ],
+  "misconceptions": [
+    {
+      "id": "multiply-instead-of-divide",
+      "detector": "linear.multiply-instead-of-divide",
+      "feedback": "To undo multiplication by the coefficient, divide both sides by that coefficient."
+    },
+    {
+      "id": "divide-in-wrong-order",
+      "detector": "linear.divide-in-wrong-order",
+      "feedback": "The solution to ax = b is b divided by a."
+    },
+    {
+      "id": "lose-negative-sign",
+      "detector": "linear.lose-negative-coefficient-sign",
+      "feedback": "Keep the sign of the coefficient when dividing."
+    }
+  ],
+  "mastery": {
+    "minAttempts": 8,
+    "requiredAccuracy": 0.85,
+    "maxHintRate": 0.25
+  },
+  "verification": {
+    "oracle": "equation-classification",
+    "generatedCaseCount": 30,
+    "domain": "rational"
+  }
+}

@@ -1,0 +1,160 @@
+{
+  "verifier": "parameterized-exact-rational-v1",
+  "originalCount": 3,
+  "mutationCount": 12,
+  "originals": [
+    {
+      "nodeId": "solve-equations-with-variables-on-both-sides",
+      "status": "pass",
+      "caseCount": 30,
+      "issueCodes": []
+    },
+    {
+      "nodeId": "solve-multiplication-equations",
+      "status": "pass",
+      "caseCount": 30,
+      "issueCodes": []
+    },
+    {
+      "nodeId": "multiply-two-fractions",
+      "status": "pass",
+      "caseCount": 30,
+      "issueCodes": []
+    }
+  ],
+  "mutations": [
+    {
+      "nodeId": "solve-equations-with-variables-on-both-sides",
+      "name": "wrong-answer-formula",
+      "expectedStatus": "fail",
+      "actualStatus": "fail",
+      "expectedCode": "answer-does-not-satisfy-problem",
+      "actualCodes": [
+        "answer-does-not-satisfy-problem"
+      ],
+      "passed": true
+    },
+    {
+      "nodeId": "solve-equations-with-variables-on-both-sides",
+      "name": "wrong-special-classification",
+      "expectedStatus": "fail",
+      "actualStatus": "fail",
+      "expectedCode": "claimed-none-but-solution-found",
+      "actualCodes": [
+        "claimed-none-but-solution-found"
+      ],
+      "passed": true
+    },
+    {
+      "nodeId": "solve-equations-with-variables-on-both-sides",
+      "name": "undeclared-problem-variable",
+      "expectedStatus": "fail",
+      "actualStatus": "fail",
+      "expectedCode": "undeclared-problem-variable",
+      "actualCodes": [
+        "undeclared-problem-variable"
+      ],
+      "passed": true
+    },
+    {
+      "nodeId": "solve-equations-with-variables-on-both-sides",
+      "name": "missing-detector",
+      "expectedStatus": "fail",
+      "actualStatus": "fail",
+      "expectedCode": "missing-detector-registry",
+      "actualCodes": [
+        "missing-detector-registry"
+      ],
+      "passed": true
+    },
+    {
+      "nodeId": "solve-multiplication-equations",
+      "name": "wrong-answer-formula",
+      "expectedStatus": "fail",
+      "actualStatus": "fail",
+      "expectedCode": "answer-does-not-satisfy-problem",
+      "actualCodes": [
+        "answer-does-not-satisfy-problem"
+      ],
+      "passed": true
+    },
+    {
+      "nodeId": "solve-multiplication-equations",
+      "name": "explicitly-unsatisfiable-constraint",
+      "expectedStatus": "fail",
+      "actualStatus": "fail",
+      "expectedCode": "unsatisfiable-literal-constraint",
+      "actualCodes": [
+        "unsatisfiable-literal-constraint"
+      ],
+      "passed": true
+    },
+    {
+      "nodeId": "solve-multiplication-equations",
+      "name": "undeclared-problem-variable",
+      "expectedStatus": "fail",
+      "actualStatus": "fail",
+      "expectedCode": "undeclared-problem-variable",
+      "actualCodes": [
+        "undeclared-problem-variable"
+      ],
+      "passed": true
+    },
+    {
+      "nodeId": "solve-multiplication-equations",
+      "name": "missing-detector",
+      "expectedStatus": "fail",
+      "actualStatus": "fail",
+      "expectedCode": "missing-detector-registry",
+      "actualCodes": [
+        "missing-detector-registry"
+      ],
+      "passed": true
+    },
+    {
+      "nodeId": "multiply-two-fractions",
+      "name": "wrong-answer-formula",
+      "expectedStatus": "fail",
+      "actualStatus": "fail",
+      "expectedCode": "answer-does-not-match-value",
+      "actualCodes": [
+        "answer-does-not-match-value"
+      ],
+      "passed": true
+    },
+    {
+      "nodeId": "multiply-two-fractions",
+      "name": "explicitly-unsatisfiable-constraint",
+      "expectedStatus": "fail",
+      "actualStatus": "fail",
+      "expectedCode": "unsatisfiable-literal-constraint",
+      "actualCodes": [
+        "unsatisfiable-literal-constraint"
+      ],
+      "passed": true
+    },
+    {
+      "nodeId": "multiply-two-fractions",
+      "name": "undeclared-problem-variable",
+      "expectedStatus": "fail",
+      "actualStatus": "fail",
+      "expectedCode": "undeclared-problem-variable",
+      "actualCodes": [
+        "undeclared-problem-variable"
+      ],
+      "passed": true
+    },
+    {
+      "nodeId": "multiply-two-fractions",
+      "name": "missing-detector",
+      "expectedStatus": "fail",
+      "actualStatus": "fail",
+      "expectedCode": "missing-detector-registry",
+      "actualCodes": [
+        "missing-detector-registry"
+      ],
+      "passed": true
+    }
+  ],
+  "status": "pass"
+}

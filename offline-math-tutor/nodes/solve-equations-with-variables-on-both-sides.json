@@ -1,0 +1,529 @@
+{
+  "schemaVersion": 4,
+  "id": "solve-equations-with-variables-on-both-sides",
+  "order": 172,
+  "title": "Solve equations with variables on both sides",
+  "objective": "Solve a linear equation with variable terms on both sides and classify it as having one solution, no solution, or infinitely many solutions.",
+  "prerequisites": [
+    "combine-like-terms",
+    "distribute-signed-factors",
+    "solve-multi-step-linear-equations"
+  ],
+  "lesson": [
+    {
+      "id": "meaning-of-solution",
+      "kind": "explain",
+      "body": {
+        "text": "A solution is a value that makes both sides of an equation equal. Each operation must preserve that equality."
+      }
+    },
+    {
+      "id": "collect-variable-terms",
+      "kind": "explain",
+      "body": {
+        "text": "First collect the variable terms on one side. Then collect the constants on the other side and isolate the variable."
+      }
+    },
+    {
+      "id": "unique-solution-example",
+      "kind": "example",
+      "body": {
+        "prompt": "Solve 5x + 2 = 3x + 10.",
+        "steps": [
+          {
+            "math": "5x + 2 = 3x + 10",
+            "reason": "Original equation"
+          },
+          {
+            "math": "2x + 2 = 10",
+            "reason": "Subtract 3x from both sides"
+          },
+          {
+            "math": "2x = 8",
+            "reason": "Subtract 2 from both sides"
+          },
+          {
+            "math": "x = 4",
+            "reason": "Divide both sides by 2"
+          }
+        ],
+        "check": "5(4) + 2 = 22 and 3(4) + 10 = 22"
+      }
+    },
+    {
+      "id": "special-cases",
+      "kind": "example",
+      "body": {
+        "prompt": "Classify equations after the variable terms cancel.",
+        "cases": [
+          {
+            "math": "4x + 3 = 4x + 3",
+            "result": "Infinitely many solutions because the remaining statement is always true."
+          },
+          {
+            "math": "4x + 3 = 4x - 2",
+            "result": "No solution because the remaining statement is false."
+          }
+        ]
+      }
+    },
+    {
+      "id": "classification-check",
+      "kind": "check",
+      "body": {
+        "prompt": "After simplifying, what does 0 = 0 mean?",
+        "choices": [
+          "One solution",
+          "No solution",
+          "Infinitely many solutions"
+        ],
+        "answerIndex": 2,
+        "feedback": "The statement is true for every permitted value of the variable."
+      }
+    }
+  ],
+  "hints": [
+    {
+      "id": "choose-variable-side",
+      "body": "Choose which side will keep the variable terms. A side with the larger variable coefficient often avoids negative coefficients."
+    },
+    {
+      "id": "remove-variable-term",
+      "body": "Use an inverse operation on both sides to remove the variable term from the other side."
+    },
+    {
+      "id": "collect-constants",
+      "body": "Move the remaining constant away from the variable by applying the same inverse operation to both sides."
+    },
+    {
+      "id": "classify-cancellation",
+      "body": "If the variable cancels, decide whether the remaining numerical statement is always true or false."
+    }
+  ],
+  "generators": [
+    {
+      "id": "integer-unique-solution",
+      "learnerVariables": [
+        "x"
+      ],
+      "problem": {
+        "op": "equal",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "multiply",
+                "args": [
+                  {
+                    "var": "a"
+                  },
+                  {
+                    "var": "x"
+                  }
+                ]
+              },
+              {
+                "var": "b"
+              }
+            ]
+          },
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "multiply",
+                "args": [
+                  {
+                    "var": "c"
+                  },
+                  {
+                    "var": "x"
+                  }
+                ]
+              },
+              {
+                "var": "d"
+              }
+            ]
+          }
+        ]
+      },
+      "parameters": {
+        "a": {
+          "type": "integer",
+          "min": -12,
+          "max": 12
+        },
+        "b": {
+          "type": "integer",
+          "min": -20,
+          "max": 20
+        },
+        "c": {
+          "type": "integer",
+          "min": -12,
+          "max": 12
+        },
+        "d": {
+          "type": "integer",
+          "min": -80,
+          "max": 80
+        }
+      },
+      "constraints": [
+        {
+          "op": "not-equal",
+          "args": [
+            {
+              "var": "a"
+            },
+            {
+              "var": "c"
+            }
+          ]
+        },
+        {
+          "op": "not-equal",
+          "args": [
+            {
+              "var": "a"
+            },
+            {
+              "literal": 0
+            }
+          ]
+        },
+        {
+          "op": "not-equal",
+          "args": [
+            {
+              "var": "c"
+            },
+            {
+              "literal": 0
+            }
+          ]
+        },
+        {
+          "op": "equal",
+          "args": [
+            {
+              "op": "mod",
+              "args": [
+                {
+                  "op": "subtract",
+                  "args": [
+                    {
+                      "var": "d"
+                    },
+                    {
+                      "var": "b"
+                    }
+                  ]
+                },
+                {
+                  "op": "subtract",
+                  "args": [
+                    {
+                      "var": "a"
+                    },
+                    {
+                      "var": "c"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "literal": 0
+            }
+          ]
+        },
+        {
+          "op": "between-inclusive",
+          "args": [
+            {
+              "op": "divide",
+              "args": [
+                {
+                  "op": "subtract",
+                  "args": [
+                    {
+                      "var": "d"
+                    },
+                    {
+                      "var": "b"
+                    }
+                  ]
+                },
+                {
+                  "op": "subtract",
+                  "args": [
+                    {
+                      "var": "a"
+                    },
+                    {
+                      "var": "c"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "literal": -12
+            },
+            {
+              "literal": 12
+            }
+          ]
+        }
+      ],
+      "answer": {
+        "kind": "one",
+        "value": {
+          "op": "divide",
+          "args": [
+            {
+              "op": "subtract",
+              "args": [
+                {
+                  "var": "d"
+                },
+                {
+                  "var": "b"
+                }
+              ]
+            },
+            {
+              "op": "subtract",
+              "args": [
+                {
+                  "var": "a"
+                },
+                {
+                  "var": "c"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "supportedRules": [
+        "add-both-sides",
+        "subtract-both-sides",
+        "multiply-both-sides",
+        "divide-both-sides-nonzero",
+        "combine-like-terms",
+        "distribute"
+      ]
+    },
+    {
+      "id": "identity-equation",
+      "learnerVariables": [
+        "x"
+      ],
+      "problem": {
+        "op": "equal",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "multiply",
+                "args": [
+                  {
+                    "var": "a"
+                  },
+                  {
+                    "var": "x"
+                  }
+                ]
+              },
+              {
+                "var": "b"
+              }
+            ]
+          },
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "multiply",
+                "args": [
+                  {
+                    "var": "a"
+                  },
+                  {
+                    "var": "x"
+                  }
+                ]
+              },
+              {
+                "var": "b"
+              }
+            ]
+          }
+        ]
+      },
+      "parameters": {
+        "a": {
+          "type": "integer",
+          "min": -12,
+          "max": 12
+        },
+        "b": {
+          "type": "integer",
+          "min": -20,
+          "max": 20
+        }
+      },
+      "constraints": [
+        {
+          "op": "not-equal",
+          "args": [
+            {
+              "var": "a"
+            },
+            {
+              "literal": 0
+            }
+          ]
+        }
+      ],
+      "answer": {
+        "kind": "infinite"
+      },
+      "supportedRules": [
+        "add-both-sides",
+        "subtract-both-sides",
+        "combine-like-terms"
+      ]
+    },
+    {
+      "id": "contradiction-equation",
+      "learnerVariables": [
+        "x"
+      ],
+      "problem": {
+        "op": "equal",
+        "args": [
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "multiply",
+                "args": [
+                  {
+                    "var": "a"
+                  },
+                  {
+                    "var": "x"
+                  }
+                ]
+              },
+              {
+                "var": "b"
+              }
+            ]
+          },
+          {
+            "op": "add",
+            "args": [
+              {
+                "op": "multiply",
+                "args": [
+                  {
+                    "var": "a"
+                  },
+                  {
+                    "var": "x"
+                  }
+                ]
+              },
+              {
+                "var": "d"
+              }
+            ]
+          }
+        ]
+      },
+      "parameters": {
+        "a": {
+          "type": "integer",
+          "min": -12,
+          "max": 12
+        },
+        "b": {
+          "type": "integer",
+          "min": -20,
+          "max": 20
+        },
+        "d": {
+          "type": "integer",
+          "min": -20,
+          "max": 20
+        }
+      },
+      "constraints": [
+        {
+          "op": "not-equal",
+          "args": [
+            {
+              "var": "a"
+            },
+            {
+              "literal": 0
+            }
+          ]
+        },
+        {
+          "op": "not-equal",
+          "args": [
+            {
+              "var": "b"
+            },
+            {
+              "var": "d"
+            }
+          ]
+        }
+      ],
+      "answer": {
+        "kind": "none"
+      },
+      "supportedRules": [
+        "add-both-sides",
+        "subtract-both-sides",
+        "combine-like-terms"
+      ]
+    }
+  ],
+  "misconceptions": [
+    {
+      "id": "change-one-side-only",
+      "detector": "linear.change-one-side-only",
+      "feedback": "An equation stays equivalent only when the same operation is applied to both sides."
+    },
+    {
+      "id": "move-term-without-inverse",
+      "detector": "linear.move-term-without-inverse",
+      "feedback": "Moving a term is shorthand for applying an inverse operation to both sides. Check the sign produced by that operation."
+    },
+    {
+      "id": "combine-unlike-terms",
+      "detector": "linear.combine-unlike-terms",
+      "feedback": "Only like terms can be combined. A variable term and a constant are different kinds of terms."
+    }
+  ],
+  "mastery": {
+    "minAttempts": 10,
+    "requiredAccuracy": 0.85,
+    "maxHintRate": 0.25
+  },
+  "verification": {
+    "oracle": "equation-classification",
+    "generatedCaseCount": 30,
+    "domain": "real"
+  }
+}

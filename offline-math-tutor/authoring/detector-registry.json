@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "detectors": [
+    "linear.change-one-side-only",
+    "linear.move-term-without-inverse",
+    "linear.combine-unlike-terms",
+    "linear.multiply-instead-of-divide",
+    "linear.divide-in-wrong-order",
+    "linear.lose-negative-coefficient-sign",
+    "fraction.add-instead-of-multiply",
+    "fraction.cross-multiply-product",
+    "fraction.leave-product-unreduced"
+  ]
+}
