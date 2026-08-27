@@ -1,3 +1,9 @@
+import {
+  rational, rationalFromLiteral, addRational, subtractRational, multiplyRational,
+  divideRational, equalRational, compareRational, isZero, evaluateExact,
+  linearPolynomial, equalPolynomial, gcd
+} from "./exact-rational.mjs";
+
 const lit = literal => ({literal});
 const variable = name => ({var: name});
 const op = (name, ...args) => ({op: name, args});
@@ -8,67 +14,68 @@ const mul = (a, b) => op("multiply", a, b);
 const div = (a, b) => op("divide", a, b);
 const x = variable("x");
 
-const gcd = (a, b) => {
-  a = Math.abs(a);
-  b = Math.abs(b);
-  while (b) [a, b] = [b, a % b];
-  return a;
+const equationTransitions = attempt => {
+  if (!Array.isArray(attempt.steps)) return [];
+  const transitions = [];
+  for (let index = 1; index < attempt.steps.length; index += 1) {
+    const previous = attempt.steps[index - 1];
+    const current = attempt.steps[index];
+    if (previous?.op !== "equal" || current?.op !== "equal") continue;
+    const pair = {
+      beforeLeft: linearPolynomial(previous.args[0]), beforeRight: linearPolynomial(previous.args[1]),
+      afterLeft: linearPolynomial(current.args[0]), afterRight: linearPolynomial(current.args[1])
+    };
+    pair.sideSwap = equalPolynomial(pair.beforeLeft, pair.afterRight) && equalPolynomial(pair.beforeRight, pair.afterLeft);
+    transitions.push(pair);
+  }
+  return transitions;
 };
 
-function evaluate(node, xValue = 0) {
-  if (Object.hasOwn(node, "literal")) return Number(node.literal);
-  if (node.var === "x") return xValue;
-  if (!node.op) return Number.NaN;
-  const values = node.args.map(arg => evaluate(arg, xValue));
-  if (node.op === "add") return values[0] + values[1];
-  if (node.op === "subtract") return values[0] - values[1];
-  if (node.op === "multiply") return values[0] * values[1];
-  if (node.op === "divide") return values[0] / values[1];
-  return Number.NaN;
-}
-
-const polynomial = node => {
-  const constant = evaluate(node, 0);
-  return {x: evaluate(node, 1) - constant, constant};
+const exactDelta = (after, before) => subtractRational(after, before);
+const equationClass = pair => {
+  const coefficient = subtractRational(pair.beforeLeft.coefficient, pair.beforeRight.coefficient);
+  const constant = subtractRational(pair.beforeLeft.constant, pair.beforeRight.constant);
+  if (isZero(coefficient)) return {kind: isZero(constant) ? "infinite" : "none"};
+  return {kind: "one", root: divideRational(rational(-constant.numerator, constant.denominator), coefficient)};
 };
-const samePolynomial = (a, b) => a.x === b.x && a.constant === b.constant;
-const equationPair = attempt => {
-  if (!Array.isArray(attempt.steps) || attempt.steps.length < 2) return null;
-  const previous = attempt.steps.at(-2);
-  const current = attempt.steps.at(-1);
-  if (previous.op !== "equal" || current.op !== "equal") return null;
-  return {
-    beforeLeft: polynomial(previous.args[0]), beforeRight: polynomial(previous.args[1]),
-    afterLeft: polynomial(current.args[0]), afterRight: polynomial(current.args[1])
-  };
+const sameSolutionSet = pair => {
+  const before = equationClass(pair);
+  const after = equationClass({beforeLeft: pair.afterLeft, beforeRight: pair.afterRight});
+  return before.kind === after.kind && (before.kind !== "one" || equalRational(before.root, after.root));
 };
 
 function changeOneSideOnly(attempt) {
-  const pair = equationPair(attempt);
-  if (!pair) return false;
-  const leftChanged = !samePolynomial(pair.beforeLeft, pair.afterLeft);
-  const rightChanged = !samePolynomial(pair.beforeRight, pair.afterRight);
-  return leftChanged !== rightChanged;
+  return equationTransitions(attempt).some(pair => {
+    if (pair.sideSwap) return false;
+    const leftChanged = !equalPolynomial(pair.beforeLeft, pair.afterLeft);
+    const rightChanged = !equalPolynomial(pair.beforeRight, pair.afterRight);
+    return leftChanged !== rightChanged && !sameSolutionSet(pair);
+  });
 }
 
 function moveTermWithoutInverse(attempt) {
-  const p = equationPair(attempt);
-  if (!p) return false;
-  const deltas = [p.afterLeft.x - p.beforeLeft.x, p.afterRight.x - p.beforeRight.x,
-    p.afterLeft.constant - p.beforeLeft.constant, p.afterRight.constant - p.beforeRight.constant];
-  return (deltas[0] !== 0 && deltas[0] === -deltas[1]) ||
-    (deltas[2] !== 0 && deltas[2] === -deltas[3]);
+  return equationTransitions(attempt).some(p => {
+    if (p.sideSwap) return false;
+    const deltas = [
+      exactDelta(p.afterLeft.coefficient, p.beforeLeft.coefficient), exactDelta(p.afterRight.coefficient, p.beforeRight.coefficient),
+      exactDelta(p.afterLeft.constant, p.beforeLeft.constant), exactDelta(p.afterRight.constant, p.beforeRight.constant)
+    ];
+    return (!isZero(deltas[0]) && equalRational(deltas[0], multiplyRational(rational(-1n), deltas[1]))) ||
+      (!isZero(deltas[2]) && equalRational(deltas[2], multiplyRational(rational(-1n), deltas[3])));
+  });
 }
 
 function combineUnlikeTerms(attempt) {
-  const p = equationPair(attempt);
-  if (!p) return false;
-  for (const [before, after] of [[p.beforeLeft, p.afterLeft], [p.beforeRight, p.afterRight]]) {
-    if (before.x !== 0 && before.constant !== 0 &&
-        ((after.x === before.x + before.constant && after.constant === 0) ||
-         (after.x === 0 && after.constant === before.x + before.constant))) return true;
-  }
-  return false;
+  return equationTransitions(attempt).some(p => {
+    if (p.sideSwap) return false;
+    for (const [before, after] of [[p.beforeLeft, p.afterLeft], [p.beforeRight, p.afterRight]]) {
+      const combined = addRational(before.coefficient, before.constant);
+      if (!isZero(before.coefficient) && !isZero(before.constant) &&
+          ((equalRational(after.coefficient, combined) && isZero(after.constant)) ||
+           (isZero(after.coefficient) && equalRational(after.constant, combined)))) return true;
+    }
+    return false;
+  });
 }
 
 function multiplicationEquation(attempt) {
@@ -77,42 +84,56 @@ function multiplicationEquation(attempt) {
   if (first?.op !== "equal" || last?.op !== "equal") return null;
   const left = first.args[0];
   if (left?.op !== "multiply" || left.args[1]?.var !== "x" || last.args[0]?.var !== "x") return null;
-  return {a: evaluate(left.args[0]), b: evaluate(first.args[1]), submitted: evaluate(last.args[1])};
+  return {a: evaluateExact(left.args[0]), b: evaluateExact(first.args[1]), submitted: evaluateExact(last.args[1])};
 }
 const multiplyInstead = attempt => {
   const p = multiplicationEquation(attempt);
-  return !!p && p.submitted === p.a * p.b;
+  if (!p) return false;
+  const wrong = multiplyRational(p.a, p.b);
+  const correct = divideRational(p.b, p.a);
+  return !equalRational(wrong, correct) && equalRational(p.submitted, wrong);
 };
 const wrongDivisionOrder = attempt => {
   const p = multiplicationEquation(attempt);
-  return !!p && p.submitted === p.a / p.b && p.submitted !== p.b / p.a;
+  if (!p || isZero(p.b)) return false;
+  const wrong = divideRational(p.a, p.b);
+  const correct = divideRational(p.b, p.a);
+  return !equalRational(wrong, correct) && equalRational(p.submitted, wrong);
 };
 const lostNegative = attempt => {
   const p = multiplicationEquation(attempt);
-  return !!p && p.b / p.a < 0 && p.submitted === Math.abs(p.b / p.a);
+  if (!p) return false;
+  const correct = divideRational(p.b, p.a);
+  const absolute = rational(correct.numerator < 0n ? -correct.numerator : correct.numerator, correct.denominator);
+  return compareRational(correct, rational(0n)) < 0 && equalRational(p.submitted, absolute);
 };
 
 function fractionProduct(attempt) {
   const first = attempt.steps?.[0];
   const last = attempt.steps?.at(-1);
   if (first?.op !== "multiply" || first.args.some(arg => arg?.op !== "divide") || !last) return null;
-  const [[a, b], [c, d]] = first.args.map(arg => arg.args.map(value => evaluate(value)));
-  return {a, b, c, d, submitted: evaluate(last), last};
+  const [[a, b], [c, d]] = first.args.map(arg => arg.args.map(value => evaluateExact(value)));
+  return {a, b, c, d, submitted: evaluateExact(last), last};
 }
 const addFractions = attempt => {
   const p = fractionProduct(attempt);
-  const close = (a, b) => Math.abs(a - b) < 1e-12;
-  return !!p && close(p.submitted, p.a / p.b + p.c / p.d) && !close(p.submitted, (p.a * p.c) / (p.b * p.d));
+  if (!p) return false;
+  const wrong = addRational(divideRational(p.a, p.b), divideRational(p.c, p.d));
+  const correct = divideRational(multiplyRational(p.a, p.c), multiplyRational(p.b, p.d));
+  return equalRational(p.submitted, wrong) && !equalRational(wrong, correct);
 };
 const crossMultiply = attempt => {
   const p = fractionProduct(attempt);
-  return !!p && (p.submitted === (p.a * p.d) / (p.b * p.c) || p.submitted === (p.a * p.d) / (p.c * p.b));
+  if (!p || isZero(p.c)) return false;
+  const wrong = divideRational(multiplyRational(p.a, p.d), multiplyRational(p.b, p.c));
+  return equalRational(p.submitted, wrong);
 };
 const leaveUnreduced = attempt => {
   const p = fractionProduct(attempt);
   if (!p || p.last.op !== "divide" || !p.last.args.every(arg => Object.hasOwn(arg, "literal"))) return false;
-  const [n, d] = p.last.args.map(arg => Number(arg.literal));
-  return p.submitted === (p.a * p.c) / (p.b * p.d) && gcd(n, d) > 1;
+  const [n, d] = p.last.args.map(arg => rationalFromLiteral(arg.literal).numerator);
+  const correct = divideRational(multiplyRational(p.a, p.c), multiplyRational(p.b, p.d));
+  return equalRational(p.submitted, correct) && gcd(n, d) > 1n;
 };
 
 export const detectors = {
@@ -126,6 +147,25 @@ export const detectors = {
   "fraction.cross-multiply-product": crossMultiply,
   "fraction.leave-product-unreduced": leaveUnreduced
 };
+
+export const detectorPolicy = Object.freeze({
+  role: "hint-selection-only",
+  mayRejectStep: false,
+  mayChangeGrade: false,
+  gradingAuthority: "answer-verifier"
+});
+
+export function selectHints(attempt) {
+  const selected = [];
+  for (const [name, detector] of Object.entries(detectors)) {
+    try {
+      if (detector(attempt)) selected.push(name);
+    } catch {
+      // Unsupported expression families fail closed: no hint is preferable to a false accusation.
+    }
+  }
+  return selected;
+}
 
 const axb = (a, b, c, d) => eq(add(mul(lit(a), x), lit(b)), add(mul(lit(c), x), lit(d)));
 const mx = (a, b) => eq(mul(lit(a), x), lit(b));

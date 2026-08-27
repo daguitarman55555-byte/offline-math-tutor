@@ -2,82 +2,20 @@ import fs from "node:fs";
 import path from "node:path";
 import {fileURLToPath} from "node:url";
 import {detectors, detectorFixtures} from "./detectors.mjs";
+import {
+  rational, asRational, addRational as add, subtractRational as subtract,
+  multiplyRational as multiply, divideRational as divide,
+  equalRational, compareRational as compare, evaluateExact,
+  serializeRational
+} from "./exact-rational.mjs";
 
 const registryPath = new URL("./detector-registry.json", import.meta.url);
 const registry = JSON.parse(fs.readFileSync(registryPath, "utf8"));
 
-const abs = value => value < 0n ? -value : value;
-function gcd(a, b) {
-  a = abs(a);
-  b = abs(b);
-  while (b !== 0n) [a, b] = [b, a % b];
-  return a;
-}
-
-function rational(numerator, denominator = 1n) {
-  if (denominator === 0n) throw new Error("division by zero");
-  if (denominator < 0n) {
-    numerator = -numerator;
-    denominator = -denominator;
-  }
-  const divisor = gcd(numerator, denominator) || 1n;
-  return {numerator: numerator / divisor, denominator: denominator / divisor};
-}
-
-const asRational = value => {
-  if (typeof value === "number" && Number.isInteger(value)) return rational(BigInt(value));
-  if (value && typeof value.numerator === "bigint") return value;
-  throw new Error("expected exact integer or rational");
-};
-const add = (a, b) => rational(a.numerator * b.denominator + b.numerator * a.denominator, a.denominator * b.denominator);
-const subtract = (a, b) => rational(a.numerator * b.denominator - b.numerator * a.denominator, a.denominator * b.denominator);
-const multiply = (a, b) => rational(a.numerator * b.numerator, a.denominator * b.denominator);
-const divide = (a, b) => rational(a.numerator * b.denominator, a.denominator * b.numerator);
-const equalRational = (a, b) => a.numerator === b.numerator && a.denominator === b.denominator;
-const compare = (a, b) => {
-  const difference = a.numerator * b.denominator - b.numerator * a.denominator;
-  return difference < 0n ? -1 : difference > 0n ? 1 : 0;
-};
-
 export function evaluate(expression, environment) {
-  if (Object.hasOwn(expression, "literal")) {
-    return typeof expression.literal === "boolean" ? expression.literal : rational(BigInt(expression.literal));
-  }
-  if (Object.hasOwn(expression, "var")) {
-    if (!Object.hasOwn(environment, expression.var)) throw new Error(`unbound variable: ${expression.var}`);
-    return asRational(environment[expression.var]);
-  }
-  const values = expression.args.map(argument => evaluate(argument, environment));
-  switch (expression.op) {
-    case "add": return values.reduce(add);
-    case "subtract": return subtract(values[0], values[1]);
-    case "multiply": return values.reduce(multiply);
-    case "divide": return divide(values[0], values[1]);
-    case "mod": {
-      const [left, right] = values;
-      if (left.denominator !== 1n || right.denominator !== 1n) throw new Error("mod requires integers");
-      return rational(left.numerator % right.numerator);
-    }
-    case "equal": return typeof values[0] === "boolean" ? values[0] === values[1] : equalRational(values[0], values[1]);
-    case "not-equal": return typeof values[0] === "boolean" ? values[0] !== values[1] : !equalRational(values[0], values[1]);
-    case "less": return compare(values[0], values[1]) < 0;
-    case "less-equal": return compare(values[0], values[1]) <= 0;
-    case "greater": return compare(values[0], values[1]) > 0;
-    case "greater-equal": return compare(values[0], values[1]) >= 0;
-    case "and": return values.every(Boolean);
-    case "or": return values.some(Boolean);
-    case "between-inclusive": return compare(values[0], values[1]) >= 0 && compare(values[0], values[2]) <= 0;
-    default: throw new Error(`unsupported operator: ${expression.op}`);
-  }
+  return evaluateExact(expression, environment);
 }
-
-export function serializeRational(value) {
-  return {
-    numerator: value.numerator.toString(),
-    denominator: value.denominator.toString(),
-    text: value.denominator === 1n ? value.numerator.toString() : `${value.numerator}/${value.denominator}`
-  };
-}
+export {serializeRational};
 
 function variablesIn(expression, found = new Set()) {
   if (Object.hasOwn(expression, "var")) found.add(expression.var);
